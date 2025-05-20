@@ -33,20 +33,25 @@ function ChatInrerface() {
                </div>
             </div>
             {/* Chat Body */}
-            <div className="flex mb-6">
-               <div className="bg-indigo-100 text-indigo-800 p-4 rounded-lg rounded-tl-none max-w-md shadow-sm">
-                  Hi there! How can I assist with your health questions today?
-               </div>
-            </div>
+
             <div className="w-full flex-grow flex flex-col p-8 overflow-y-auto bg-gray-50">
-               {allMessages.map((msg, index) => (
-                  <div key={index} className="flex justify-end mb-6">
-                     <div className="bg-purple-600 text-white p-4 rounded-lg rounded-tr-none max-w-md shadow-sm">
-                        {msg.message}
+               {allMessages.map((msg, index) =>
+                  msg.user ? (
+                     <div key={index} className="flex justify-end mb-6">
+                        <div className="bg-purple-600 text-white px-4 py-2 rounded-lg rounded-tr-none max-w-md shadow-sm">
+                           {msg.message}
+                        </div>
                      </div>
-                  </div>
-               ))}
+                  ) : (
+                     <div key={index} className="flex mb-6">
+                        <div className="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-lg rounded-tl-none max-w-md shadow-sm">
+                           {msg.message}
+                        </div>
+                     </div>
+                  )
+               )}
             </div>
+
             {/* Input area */}
             <form
                className="flex w-full py-6 px-8 gap-4 bg-white border-t border-gray-200"
@@ -61,6 +66,7 @@ function ChatInrerface() {
                   placeholder="Type your message here..."
                   name="message"
                   onChange={(e) => setMessage(e.target.value)}
+                  value={message}
                />
                <button className="bg-purple-600 hover:bg-purple-700 transition-colors rounded-lg flex items-center justify-center text-white px-8 py-3 text-base font-medium">
                   <i className="bi bi-send mr-2"></i> Send
