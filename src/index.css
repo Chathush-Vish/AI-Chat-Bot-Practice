@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+* {
+   font-family: "Cascadia Mono", sans-serif;
+}
+
+::-webkit-scrollbar {
+   display: none;
+}
